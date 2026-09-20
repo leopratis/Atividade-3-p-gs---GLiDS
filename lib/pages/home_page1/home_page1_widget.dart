@@ -1,7 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'home_page1_model.dart';
 export 'home_page1_model.dart';
@@ -25,6 +25,14 @@ class _HomePage1WidgetState extends State<HomePage1Widget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => HomePage1Model());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (scaffoldKey.currentState!.isDrawerOpen ||
+          scaffoldKey.currentState!.isEndDrawerOpen) {
+        Navigator.pop(context);
+      }
+    });
   }
 
   @override
@@ -44,31 +52,52 @@ class _HomePage1WidgetState extends State<HomePage1Widget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Color(0xFF000F23),
-        drawer: Drawer(
-          elevation: 16.0,
-          child: Stack(
-            children: [
-              Container(
-                width: double.infinity,
-                height: 852.0,
-                decoration: BoxDecoration(
-                  color: Color(0xFF000F23),
-                ),
-                child: Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(20.0, 60.0, 60.0, 0.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            0.0, 0.0, 100.0, 0.0),
-                        child: Text(
-                          'Menu',
-                          style: FlutterFlowTheme.of(context)
-                              .headlineMedium
-                              .override(
-                                font: GoogleFonts.interTight(
+        drawer: InkWell(
+          splashColor: Colors.transparent,
+          focusColor: Colors.transparent,
+          hoverColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          onTap: () async {
+            if (scaffoldKey.currentState!.isDrawerOpen ||
+                scaffoldKey.currentState!.isEndDrawerOpen) {
+              Navigator.pop(context);
+            }
+          },
+          child: Drawer(
+            elevation: 16.0,
+            child: Stack(
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 852.0,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF000F23),
+                  ),
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(20.0, 60.0, 60.0, 0.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 100.0, 0.0),
+                          child: Text(
+                            'Menu',
+                            style: FlutterFlowTheme.of(context)
+                                .headlineMedium
+                                .override(
+                                  font: GoogleFonts.interTight(
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .headlineMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .headlineMedium
+                                        .fontStyle,
+                                  ),
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  letterSpacing: 0.0,
                                   fontWeight: FlutterFlowTheme.of(context)
                                       .headlineMedium
                                       .fontWeight,
@@ -76,52 +105,45 @@ class _HomePage1WidgetState extends State<HomePage1Widget> {
                                       .headlineMedium
                                       .fontStyle,
                                 ),
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                letterSpacing: 0.0,
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .headlineMedium
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .headlineMedium
-                                    .fontStyle,
-                              ),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(200.0, 20.0, 20.0, 0.0),
-                child: Container(
-                  width: double.infinity,
-                  height: 59.0,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF000F23),
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.pushNamed(HomePage1Widget.routeName);
-                        },
-                        child: Icon(
-                          Icons.arrow_back,
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          size: 30.0,
+                Padding(
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(200.0, 20.0, 20.0, 0.0),
+                  child: Container(
+                    width: double.infinity,
+                    height: 59.0,
+                    decoration: BoxDecoration(
+                      color: Color(0xFF000F23),
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed(HomePage1Widget.routeName);
+                          },
+                          child: Icon(
+                            Icons.arrow_back,
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            size: 30.0,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         body: SafeArea(
@@ -444,7 +466,7 @@ class _HomePage1WidgetState extends State<HomePage1Widget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        context.pushNamed(LoginWidget.routeName);
+                        scaffoldKey.currentState!.openDrawer();
                       },
                       child: Icon(
                         Icons.arrow_back,
